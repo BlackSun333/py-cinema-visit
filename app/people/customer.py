@@ -1,3 +1,6 @@
+from app.people.cinema_staff import Cleaner  # noqa: F401
+
+
 class Customer:
     def __init__(self, name: str, food: str) -> None:
         self.name = name
