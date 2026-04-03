@@ -19,7 +19,9 @@ def cinema_visit(
         CinemaBar.sell_product(new_customer.food, new_customer)
 
     cleaner_instance = Cleaner(cleaner)
-    hall_instance = CinemaHall(hall_number)
+
+    # Змінюємо hall_number на number, щоб відповідати новому __init__
+    hall_instance = CinemaHall(number=hall_number)
 
     hall_instance.movie_session(
         movie_name=movie,
