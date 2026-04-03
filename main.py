@@ -1,4 +1,3 @@
-from typing import List, Dict
 from app.cinema.bar import CinemaBar
 from app.cinema.hall import CinemaHall
 from app.people.customer import Customer
@@ -6,25 +5,25 @@ from app.people.cinema_staff import Cleaner
 
 
 def cinema_visit(
-        customers: List[Dict[str, str]],
-        hall_number: int,
-        cleaner: str,
-        movie: str
-) -> None:
-    customer_instances: List[Customer] = []
+    customers: list,
+    hall_number: int,
+    cleaner: str,
+    movie: str) -> None:
+    customer_instances = []
 
-    for customer_data in customers:
-        new_customer = Customer(customer_data["name"], customer_data["food"])
+    for c_data in customers:
+        new_customer = Customer(name=c_data["name"], food=c_data["food"])
         customer_instances.append(new_customer)
-        CinemaBar.sell_product(new_customer.food, new_customer)
+        CinemaBar.sell_product(
+            product=new_customer.food,
+            customer=new_customer
+        )
 
-    cleaner_instance = Cleaner(cleaner)
+    cleaning_staff = Cleaner(name=cleaner)
+    hall = CinemaHall(number=hall_number)
 
-    # Змінюємо hall_number на number, щоб відповідати новому __init__
-    hall_instance = CinemaHall(number=hall_number)
-
-    hall_instance.movie_session(
+    hall.movie_session(
         movie_name=movie,
         customers=customer_instances,
-        cleaning_staff=cleaner_instance
+        cleaning_staff=cleaning_staff
     )
