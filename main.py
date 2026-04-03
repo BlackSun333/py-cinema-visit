@@ -1,11 +1,18 @@
+from typing import List, Dict
 from app.cinema.bar import CinemaBar
 from app.cinema.hall import CinemaHall
 from app.people.customer import Customer
 from app.people.cinema_staff import Cleaner
 
 
-def cinema_visit(customers, hall_number, cleaner, movie):
-    customer_instances = []
+def cinema_visit(
+        customers: List[Dict[str, str]],
+        hall_number: int,
+        cleaner: str,
+        movie: str
+) -> None:
+    customer_instances: List[Customer] = []
+
     for customer_data in customers:
         new_customer = Customer(customer_data["name"], customer_data["food"])
         customer_instances.append(new_customer)
